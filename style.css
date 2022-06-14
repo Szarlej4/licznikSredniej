@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+* {
+    font-family: Lato;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+
+}
+
+.gradeInput,
+.weightInput {
+    width: 10rem;
+    height: 5rem;
+    margin: 0 2rem;
+}
+
+.grade h2 {
+    line-height: 1rem
+}
+
+.grade {
+    background: green;
+    padding: 2rem;
+    max-width: 40rem;
+    margin: .5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.specifyGradeBox {
+    display: flex;
+    justify-content: center;
+}
+
+#averageContainer {
+    background: green;
+    max-width: 40rem;
+    padding: 2rem;
+    margin: .5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.functionButton {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 2rem;
+    color: white;
+    background-color: #048504;
+    border: solid 2px black;
+    border-radius: .5rem;
+    padding: 1.5rem 2.25rem;
+}
+
+.functionButton:hover {
+    background: #0b9e0b;
+}
+
+.functionButton:active {
+    background: #15d315;
+}

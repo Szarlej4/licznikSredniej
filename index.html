@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Licznik sredniej</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="grades">
+        <div class="grade">
+            <h2>Wpisz ocene</h2>
+            <div class="specifyGradeBox">
+                <label for="grade1">Ocena</label>
+                <input class="gradeInput" type="number" id="grade1" min="1" max="6">
+                <label for="weight1">Waga</label>
+                <input class="weightInput" type="number" id="weight1" min="1" max="4">
+            </div>
+        </div>
+        <div class="grade">
+            <h2>Wpisz ocene</h2>
+            <div class="specifyGradeBox">
+                <label for="grade2">Ocena</label>
+                <input class="gradeInput" type="number" id="grade2" min="1" max="6">
+                <label for="weight2">Waga</label>
+                <input class="weightInput" type="number" id="weight2" min="1" max="4">
+            </div>
+        </div>
+
+    </div>
+    <div id="averageContainer">
+        <h2 id="average">Aby policzyc srednia potrzeba przynajmniej 2 ocen</h2>
+    </div>
+    <button id="addGradeButton" class="functionButton">Dodaj</button>
+    <button id="calculateButton" class="functionButton">Oblicz</button>
+    <script src="script.js"></script>
+</body>
+
+</html>
