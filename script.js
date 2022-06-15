@@ -27,7 +27,7 @@ for (let input of allWeightInputs) {
             // average += input.value * 1;
             // console.log(sum);
             // console.log(average);
-            // console.log(Math.round((sum / average) * 1000) / 1000)
+            // console.log(Math.round((sum / average) * 1000) / 1000);
         })
     }
     input.addEventListener('change', () => {
