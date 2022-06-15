@@ -7,6 +7,7 @@ const allWeightInputs = document.querySelectorAll('.chooseWeightInput');
 const allGradeInputs = document.querySelectorAll('.gradeInput');
 let sum = 0;
 let average = 0;
+let weightSum = 0;
 
 for (let input of allGradeInputs) {
     input.addEventListener('click', () => {
@@ -19,11 +20,14 @@ for (let input of allWeightInputs) {
     for (let gradeInput of allGradeInputs) {
         gradeInput.addEventListener('click', () => {
             gradeInformation.innerHTML += `${gradeInput.value} `;
+            sum += gradeInput.value * input.value;
+            weightSum += input.value * 1;
+            averageInfo.innerHTML = Math.round((sum / weightSum) * 1000) / 1000;
             // sum += gradeInput.value * input.value;
             // average += input.value * 1;
             // console.log(sum);
             // console.log(average);
-            // console.log(Math.round((sum / average) * 1000) / 1000);
+            // console.log(Math.round((sum / average) * 1000) / 1000)
         })
     }
     input.addEventListener('change', () => {
