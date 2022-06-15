@@ -4,11 +4,22 @@
     font-family: Lato;
 }
 
+.hidden {
+    display: none !important;
+}
+
 *,
 *::before,
 *::after {
     box-sizing: border-box;
 
+}
+
+#grades {
+    display: flex;
+    flex-flow: row wrap;
+    max-width: 41rem;
+    justify-content: space-between
 }
 
 .gradeInput,
@@ -22,7 +33,8 @@
     line-height: 1rem
 }
 
-.grade {
+.grade,
+#weights {
     background: green;
     padding: 2rem;
     max-width: 40rem;
@@ -30,6 +42,20 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+#weights {
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+#weights h2 {
+    flex-basis: 100%;
+    text-align: center;
+}
+
+#weights input {
+    margin-right: 1.5rem;
 }
 
 .specifyGradeBox {
