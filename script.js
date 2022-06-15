@@ -17,9 +17,30 @@ for (let input of allGradeInputs) {
 for (let input of allWeightInputs) {
     const allGradeInputs = document.querySelectorAll(`#gradesWeight${input.value} .gradesInput`);
     const gradeInformation = document.querySelector(`#gradesInformation${input.value}`);
+
     for (let gradeInput of allGradeInputs) {
         gradeInput.addEventListener('click', () => {
-            gradeInformation.innerHTML += `${gradeInput.value} `;
+            const createGrade = document.createElement('span');
+            const createTooltip = document.createElement('span');
+
+            createTooltip.innerHTML = "Wcisnij aby usunac srednia";
+            createTooltip.classList.toggle('gradeTooltip');
+            createGrade.innerHTML = `${gradeInput.value} `;
+            createGrade.classList.toggle('createdGrade');
+            gradeInformation.append(createGrade);
+            createGrade.append(createTooltip);
+
+            createGrade.addEventListener('click', () => {
+                sum -= gradeInput.value * input.value;
+                weightSum -= input.value * 1;
+                let average = Math.round((sum / weightSum) * 1000) / 1000;
+                averageInfo.innerHTML = Math.round((sum / weightSum) * 1000) / 1000;
+                if (isNaN(average)) {
+                    averageInfo.innerHTML = '???';
+                }
+                createGrade.classList.toggle('hidden');
+            })
+
             sum += gradeInput.value * input.value;
             weightSum += input.value * 1;
             averageInfo.innerHTML = Math.round((sum / weightSum) * 1000) / 1000;

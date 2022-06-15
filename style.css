@@ -94,3 +94,21 @@
 .actualGradesInformation {
     max-width: 15rem;
 }
+
+.createdGrade {
+    font-size: 2rem;
+    position: relative;
+}
+
+.createdGrade:hover {
+    border: 1px solid black;
+}
+
+.createdGrade:hover .gradeTooltip {
+    visibility: visible;
+}
+
+.gradeTooltip {
+    position: absolute;
+    visibility: hidden;
+}
