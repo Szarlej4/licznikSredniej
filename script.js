@@ -11,7 +11,7 @@ let weightSum = parseFloat(localStorage.getItem(`weightSum`));
 const createGradesInput = (i) => {
     localStorage.setItem(`gradesOfWeight${i}`, '0');
     localStorage.setItem(`weight${i}Sum`, '0');
-    let weightSum = parseFloat(localStorage.getItem(`weight${i}Sum`));
+    let thisWeightSum = parseFloat(localStorage.getItem(`weight${i}Sum`));
     let gradesOfThisWeight = parseFloat(localStorage.getItem(`gradesOfWeight${i}`));
     const createGrade = document.createElement('div');
     const createGradesBoxTitle = document.createElement('h2');
@@ -31,8 +31,6 @@ const createGradesInput = (i) => {
     grades.append(createGrade);
     createGrade.append(createGradesBoxTitle, createSpecifyGradesBox, createActualGradesInformation);
     for (let j = 1; j < 7; j++) {
-        localStorage.setItem(`weightSum`, '0');
-        let weightSum = parseFloat(localStorage.getItem(`weightSum`));
         const createGradesInput = document.createElement('button');
         createGradesInput.classList.add('gradesInput');
         createGradesInput.value = j;
@@ -52,14 +50,25 @@ const createGradesInput = (i) => {
 
             sum += createGradesInput.value * i;
             console.log(`sum: ${sum}`);
+
             localStorage.setItem('sum', `${sum}`);
             let kkk = localStorage.getItem('sum')
             console.log(`localStorage sum: ${kkk}`);
-            weightSum += i * 1;
-            console.log(`weightSum: ${weightSum}`);
-            localStorage.setItem(`weight${i}Sum`, `${weightSum}`);
-            let lll = localStorage.getItem(`weight${i}Sum`);
+
+            thisWeightSum += i * 1;
+            console.log(`thisWeightSum: ${thisWeightSum}`);
+
+            localStorage.setItem(`weight${i}Sum`, `${thisWeightSum}`);
+            let ooo = localStorage.getItem(`weight${i}Sum`);
+            console.log(`local storage weight sum: ${ooo}`);
+
+            weightSum += thisWeightSum;
+            console.log(`weight sum: ${weightSum}`);
+
+            localStorage.setItem(`weightSum`, `${weightSum}`);
+            let lll = localStorage.getItem('weightSum');
             console.log(`localStorage weightSum: ${lll}`);
+
             average = Math.round((sum / weightSum) * 1000) / 1000;
             averageInfo.innerHTML = average;
             console.log(`average: ${average}`);
