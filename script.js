@@ -1,3 +1,4 @@
+localStorage.clear();
 const grades = document.querySelector('#grades'); // grades selector
 const averageInfo = document.querySelector('#average'); // average info selector
 const allWeightInputs = document.querySelectorAll('.chooseWeightInput'); // all weight inputs selector
@@ -49,59 +50,47 @@ const createGradesInput = (i) => {
             createGradeItem.append(createTooltip);
 
             sum += createGradesInput.value * i;
-            console.log(`sum: ${sum}`);
 
             localStorage.setItem('sum', `${sum}`);
-            let kkk = localStorage.getItem('sum')
-            console.log(`localStorage sum: ${kkk}`);
 
             thisWeightSum += i * 1;
-            console.log(`thisWeightSum: ${thisWeightSum}`);
 
             localStorage.setItem(`weight${i}Sum`, `${thisWeightSum}`);
-            let ooo = localStorage.getItem(`weight${i}Sum`);
-            console.log(`local storage weight sum: ${ooo}`);
 
-            weightSum += thisWeightSum;
-            console.log(`weight sum: ${weightSum}`);
+            weightSum += i * 1;
 
             localStorage.setItem(`weightSum`, `${weightSum}`);
-            let lll = localStorage.getItem('weightSum');
-            console.log(`localStorage weightSum: ${lll}`);
 
             average = Math.round((sum / weightSum) * 1000) / 1000;
-            averageInfo.innerHTML = average;
-            console.log(`average: ${average}`);
             localStorage.setItem('average', `${average}`);
-            let jjj = localStorage.getItem('average');
-            console.log(`localStorage average: ${jjj}`);
+            averageInfo.innerHTML = average;
+
             let thisGradeLocalStorageId = `weight${i}grade${gradesOfThisWeight}`;
-            console.log(`this Grade Local Storage Id: ${thisGradeLocalStorageId}`);
             localStorage.setItem(thisGradeLocalStorageId, `${createGradesInput.value}`);
-            console.log(`this grade local storage id value${createGradesInput.value}`);
 
 
             createGradeItem.addEventListener('click', () => {
                 sum -= createGradesInput.value * i;
                 console.log(`sum: ${sum}`);
                 localStorage.setItem('sum', `${sum}`);
-                let ppp = localStorage.getItem('sum');
-                console.log(`localStorage sum: ${ppp}`);
+
                 weightSum -= i * 1;
                 console.log(`weightSum: ${weightSum}`);
                 localStorage.setItem(`weight${i}Sum`, `${weightSum}`);
-                let sss = localStorage.getItem(`weight${i}Sum`);
-                console.log(`localStorage weight sum: ${sss}`);
+
                 average = Math.round((sum / weightSum) * 1000) / 1000;
-                console.log(`average: ${average}`);
                 localStorage.setItem('average', `${average}`);
-                let fff = localStorage.getItem(`average`);
-                console.log(`localStorage average: ${fff}`);
+                console.log(`average: ${average}`);
+
                 averageInfo.innerHTML = average;
+                // let thisGradeLocalStorageId = `weight${i}grade${gradesOfThisWeight}`;
+                // localStorage.removeItem(thisGradeLocalStorageId, `${createGradesInput.value}`);
+
                 if (isNaN(average)) {
                     averageInfo.innerHTML = '???';
                     localStorage.setItem('average', '0');
                 }
+
                 localStorage.removeItem(thisGradeLocalStorageId);
                 createGradeItem.remove();
             })
