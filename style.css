@@ -30,7 +30,8 @@
 }
 
 .grade h2 {
-    line-height: 1rem;
+    line-height: 2rem;
+    font-size: 1.4rem;
 }
 
 .grade,
@@ -42,6 +43,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.grade {
+    flex-basis: 19rem;
+    max-width: 19rem;
 }
 
 #weights {
@@ -79,6 +85,7 @@
     color: white;
     background-color: #048504;
     border: solid 2px black;
+    ;
     border-radius: .5rem;
     padding: 1.5rem 2.25rem;
 }
@@ -102,6 +109,7 @@
 
 .createdGrade:hover {
     border: 1px solid black;
+    ;
 }
 
 .createdGrade:hover .gradeTooltip {
@@ -111,4 +119,44 @@
 .gradeTooltip {
     position: absolute;
     visibility: hidden;
+}
+
+#gradesWeight1 {
+    order: 1;
+}
+
+#gradesWeight2 {
+    order: 2;
+}
+
+#gradesWeight3 {
+    order: 3;
+}
+
+#gradesWeight4 {
+    order: 4;
+}
+
+#gradesWeight5 {
+    order: 5;
+}
+
+#gradesWeight6 {
+    order: 6;
+}
+
+#gradesWeight7 {
+    order: 7;
+}
+
+#gradesWeight8 {
+    order: 8;
+}
+
+#gradesWeight9 {
+    order: 9;
+}
+
+#gradesWeight10 {
+    order: 10;
 }

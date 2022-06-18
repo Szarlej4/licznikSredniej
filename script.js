@@ -1,4 +1,3 @@
-localStorage.clear();
 const grades = document.querySelector('#grades'); // grades selector
 const averageInfo = document.querySelector('#average'); // average info selector
 const allWeightInputs = document.querySelectorAll('.chooseWeightInput'); // all weight inputs selector
@@ -103,7 +102,41 @@ const createGradesInput = (i) => {
 
 const removeGradesInput = (gradesInput) => {
     let boxInputToRemove = document.querySelector(`#gradesWeight${gradesInput}`);
+    let gradesOfThisWeight = parseFloat(localStorage.getItem(`gradesOfWeight${gradesInput}`));
+    console.log("grades of this weight: " + gradesOfThisWeight);
+    for (let i = 0; i < gradesOfThisWeight; i++) {
+        console.log('');
+        console.log('##################################');
+        console.log(`iteration: ${i + 1}`);
+        let thisGradeLocalStorageId = `weight${gradesInput}grade${i}`;
+        console.log(`thisGradeLocalStorageId ${thisGradeLocalStorageId}`);
+        let thisGradeValue = parseFloat(localStorage.getItem(thisGradeLocalStorageId));
+        console.log(`thisGradeValue ${thisGradeValue}`);
+        sum -= thisGradeValue * gradesInput;
+        console.log(`sum ${sum}`);
+        localStorage.setItem('sum', `${sum}`);
+        console.log(`weightSum ${weightSum}`);
+        console.log(`gradesInput ${gradesInput}`);
+        weightSum -= gradesInput;
+        console.log(`weightSum ${weightSum}`);
+        console.log('##################################');
+
+        localStorage.removeItem(thisGradeLocalStorageId);
+    }
+    thisWeightSum = 0;
+    localStorage.setItem(`weight${gradesInput}Sum`, '0');
+    localStorage.setItem(`weight${gradesInput}Sum`, `${thisWeightSum}`);
     boxInputToRemove.remove();
+    average = Math.round((sum / weightSum) * 1000) / 1000;
+    console.log(sum);
+    console.log(weightSum);
+    console.log(average);
+    localStorage.setItem('average', `${average}`);
+    averageInfo.innerHTML = average;
+    if (isNaN(average)) {
+        averageInfo.innerHTML = '???';
+        localStorage.setItem('average', '0');
+    }
 }
 
 for (let i = 1; i < 11; i++) {
