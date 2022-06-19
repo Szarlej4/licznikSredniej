@@ -1,16 +1,31 @@
+const localStorageButton = document.querySelector('#localStorageButton');
+localStorageButton.addEventListener('click', () => {
+    console.log(localStorage);
+})
+const reset = document.querySelector('#reset');
+reset.addEventListener('click', () => {
+    localStorage.clear();
+})
 const grades = document.querySelector('#grades'); // grades selector
 const averageInfo = document.querySelector('#average'); // average info selector
 const allWeightInputs = document.querySelectorAll('.chooseWeightInput'); // all weight inputs selector
-localStorage.setItem('sum', '0'); // sum for counting average declared in global scope 
+if (localStorage.getItem('siteVisitedEarlier') == null) {
+    localStorage.setItem('sum', '0');
+    localStorage.setItem('average', '0');
+    localStorage.setItem(`weightSum`, '0');
+}
 let sum = parseFloat(localStorage.getItem('sum'));
-localStorage.setItem('average', '0');
-average = parseFloat(localStorage.getItem('average'));
-localStorage.setItem(`weightSum`, '0');
+console.log(`sum: ${sum}`);
+let average = parseFloat(localStorage.getItem('average'));
+console.log(`average: ${average}`);
 let weightSum = parseFloat(localStorage.getItem(`weightSum`));
+console.log(`weightSum: ${weightSum}`);
 
-const createGradesInput = (i) => {
-    localStorage.setItem(`gradesOfWeight${i}`, '0');
-    localStorage.setItem(`weight${i}Sum`, '0');
+const createGradesInput = (i, bool) => {
+    if (!bool) {
+        localStorage.setItem(`gradesOfWeight${i}`, '0');
+        localStorage.setItem(`weight${i}Sum`, '0');
+    }
     let thisWeightSum = parseFloat(localStorage.getItem(`weight${i}Sum`));
     let gradesOfThisWeight = parseFloat(localStorage.getItem(`gradesOfWeight${i}`));
     const createGrade = document.createElement('div');
@@ -21,7 +36,7 @@ const createGradesInput = (i) => {
     createGrade.classList.add('grade');
     createGrade.id = `gradesWeight${i}`;
 
-    createGradesBoxTitle.innerHTML = `Wybierz oceny waga ${i}`;
+    createGradesBoxTitle.innerHTML = `Dodaj oceny wagi ${i}`;
 
     createSpecifyGradesBox.classList.add('specifyGradeBox');
 
@@ -30,6 +45,57 @@ const createGradesInput = (i) => {
 
     grades.append(createGrade);
     createGrade.append(createGradesBoxTitle, createSpecifyGradesBox, createActualGradesInformation);
+    if (bool) {
+        console.log(`sum: ${sum}`);
+        console.log(`average: ${average}`);
+        console.log(gradesOfThisWeight);
+        for (let j = 0; j < gradesOfThisWeight; j++) {
+            let thisGradeLocalStorageId = `weight${i}grade${j}`;
+            let thisGradeValue = parseFloat(localStorage.getItem(`${thisGradeLocalStorageId}`));
+            if (!isNaN(thisGradeValue)) {
+                const createGradeItem = document.createElement('span');
+                const createTooltip = document.createElement('span');
+                console.log(`suma tworze oceny: ${sum}`);
+                console.log(`weightSum tworze oceny: ${weightSum}`);
+                console.log(`average tworze oceny: ${average}`);
+
+                createTooltip.innerHTML = "Wcisnij aby usunac ocene";
+                createTooltip.classList.toggle('gradeTooltip');
+                createGradeItem.innerHTML = `${thisGradeValue} `;
+                createGradeItem.classList.toggle('createdGrade');
+                createActualGradesInformation.append(createGradeItem);
+                createGradeItem.append(createTooltip);
+                createGradeItem.addEventListener('click', () => {
+                    sum -= thisGradeValue * i;
+                    console.log(`suma klikam: ${sum}`);
+                    localStorage.setItem('sum', `${sum}`);
+
+                    weightSum -= i * 1;
+                    console.log(`weightSum klikam: ${weightSum}`);
+                    localStorage.setItem(`weight${i}Sum`, `${weightSum}`);
+
+                    average = Math.round((sum / weightSum) * 1000) / 1000;
+                    localStorage.setItem('average', `${average}`);
+                    console.log(`average klikam: ${average}`);
+
+                    averageInfo.innerHTML = `Obliczona srednia: ${average}`;
+                    // let thisGradeLocalStorageId = `weight${i}grade${gradesOfThisWeight}`;
+                    // localStorage.removeItem(thisGradeLocalStorageId, `${createGradesInput.value}`);
+
+                    if (isNaN(average)) {
+                        averageInfo.innerHTML = 'Obliczona srednia: ???';
+                        localStorage.setItem('average', '0');
+                    }
+
+                    localStorage.removeItem(thisGradeLocalStorageId);
+                    createGradeItem.remove();
+                })
+            }
+            console.log(thisGradeLocalStorageId);
+            console.log(thisGradeValue);
+            console.log('essa');
+        }
+    }
     for (let j = 1; j < 7; j++) {
         const createGradesInput = document.createElement('button');
         createGradesInput.classList.add('gradesInput');
@@ -48,7 +114,9 @@ const createGradesInput = (i) => {
             createActualGradesInformation.append(createGradeItem);
             createGradeItem.append(createTooltip);
 
+            console.log(sum);
             sum += createGradesInput.value * i;
+            console.log(sum);
 
             localStorage.setItem('sum', `${sum}`);
 
@@ -62,10 +130,10 @@ const createGradesInput = (i) => {
 
             average = Math.round((sum / weightSum) * 1000) / 1000;
             localStorage.setItem('average', `${average}`);
-            averageInfo.innerHTML = average;
+            averageInfo.innerHTML = `Obliczona srednia: ${average}`;
 
             let thisGradeLocalStorageId = `weight${i}grade${gradesOfThisWeight}`;
-            localStorage.setItem(thisGradeLocalStorageId, `${createGradesInput.value}`);
+            localStorage.setItem(`${thisGradeLocalStorageId}`, `${createGradesInput.value}`);
 
 
             createGradeItem.addEventListener('click', () => {
@@ -81,16 +149,16 @@ const createGradesInput = (i) => {
                 localStorage.setItem('average', `${average}`);
                 console.log(`average: ${average}`);
 
-                averageInfo.innerHTML = average;
+                averageInfo.innerHTML = `Obliczona srednia: ${average}`;
                 // let thisGradeLocalStorageId = `weight${i}grade${gradesOfThisWeight}`;
                 // localStorage.removeItem(thisGradeLocalStorageId, `${createGradesInput.value}`);
 
                 if (isNaN(average)) {
-                    averageInfo.innerHTML = '???';
+                    averageInfo.innerHTML = 'Obliczona srednia: ???';
                     localStorage.setItem('average', '0');
                 }
 
-                localStorage.removeItem(thisGradeLocalStorageId);
+                localStorage.removeItem(`${thisGradeLocalStorageId}`);
                 createGradeItem.remove();
             })
 
@@ -110,7 +178,7 @@ const removeGradesInput = (gradesInput) => {
         console.log(`iteration: ${i + 1}`);
         let thisGradeLocalStorageId = `weight${gradesInput}grade${i}`;
         console.log(`thisGradeLocalStorageId ${thisGradeLocalStorageId}`);
-        let thisGradeValue = parseFloat(localStorage.getItem(thisGradeLocalStorageId));
+        let thisGradeValue = parseFloat(localStorage.getItem(`${thisGradeLocalStorageId}`));
         console.log(`thisGradeValue ${thisGradeValue}`);
         sum -= thisGradeValue * gradesInput;
         console.log(`sum ${sum}`);
@@ -121,51 +189,64 @@ const removeGradesInput = (gradesInput) => {
         console.log(`weightSum ${weightSum}`);
         console.log('##################################');
 
-        localStorage.removeItem(thisGradeLocalStorageId);
+        localStorage.removeItem(`${thisGradeLocalStorageId}`);
+        console.log(localStorage);
     }
-    thisWeightSum = 0;
     localStorage.setItem(`weight${gradesInput}Sum`, '0');
-    localStorage.setItem(`weight${gradesInput}Sum`, `${thisWeightSum}`);
+    localStorage.setItem(`gradesOfWeight${gradesInput}`, '0');
     boxInputToRemove.remove();
     average = Math.round((sum / weightSum) * 1000) / 1000;
-    console.log(sum);
-    console.log(weightSum);
-    console.log(average);
     localStorage.setItem('average', `${average}`);
-    averageInfo.innerHTML = average;
+    averageInfo.innerHTML = `Obliczona srednia: ${average}`;
     if (isNaN(average)) {
-        averageInfo.innerHTML = '???';
+        localStorage.setItem('weightSum', '0');
+        averageInfo.innerHTML = 'Obliczona srednia: ???';
         localStorage.setItem('average', '0');
     }
 }
 
-for (let i = 1; i < 11; i++) {
-    let weightInput = document.querySelector(`#inputWeight${i}`);
-    let isWeightChecked = document.querySelector(`#inputWeight${i}`).checked;
-    if (isWeightChecked || localStorage.getItem(`#inputWeight${i}`) !== "0") {
-        localStorage.setItem(`#inputWeight${i}`, '1');
-        document.querySelector(`#inputWeight${i}`).checked = true;
-        if (localStorage.getItem(`isWeight${i}Created`) === '1') {
-            createGradesInput(i);
-            console.log('created already');
+if (localStorage.getItem('siteVisitedEarlier') == null) {
+    for (let i = 1; i < 11; i++) {
+        let weightInput = document.querySelector(`#inputWeight${i}`);
+        if (i < 5) {
+            weightInput.checked = true;
+            localStorage.setItem(`inputWeight${i}`, '1');
+            createGradesInput(i, false);
         } else {
-            createGradesInput(i);
-            localStorage.setItem(`isWeight${i}Created`, '1');
-            console.log('it was never created');
+            localStorage.setItem(`inputWeight${i}`, '0');
         }
-    } else {
-        localStorage.setItem(`#inputWeight${i}`, '0');
+        weightInput.addEventListener('click', () => {
+            let isWeightChecked = document.querySelector(`#inputWeight${i}`).checked;
+            if (!isWeightChecked) {
+                localStorage.setItem(`inputWeight${i}`, '0');
+                removeGradesInput(i);
+            } else {
+                localStorage.setItem(`inputWeight${i}`, '1');
+                createGradesInput(i, false);
+            }
+        })
     }
-    weightInput.addEventListener('click', () => {
-        let isWeightChecked = document.querySelector(`#inputWeight${i}`).checked;
-        if (!isWeightChecked) {
-            localStorage.setItem(`#inputWeight${i}`, '0');
-            removeGradesInput(i);
-            console.log("is not checked");
+    localStorage.setItem('siteVisitedEarlier', 'true');
+} else {
+    for (let i = 1; i < 11; i++) {
+        let weightInput = document.querySelector(`#inputWeight${i}`);
+        let isWeightCreated = parseInt(localStorage.getItem(`inputWeight${i}`));
+        if (isWeightCreated) {
+            weightInput.checked = true;
+            createGradesInput(i, true);
         } else {
-            localStorage.setItem(`#inputWeight${i}`, '1');
-            createGradesInput(i);
-            console.log("ischecked");
+            weightInput.checked = false;
         }
-    })
+        weightInput.addEventListener('click', () => {
+            let isWeightChecked = document.querySelector(`#inputWeight${i}`).checked;
+            if (!isWeightChecked) {
+                localStorage.setItem(`inputWeight${i}`, '0');
+                removeGradesInput(i);
+            } else {
+                localStorage.setItem(`inputWeight${i}`, '1');
+                createGradesInput(i);
+            }
+        })
+    }
+    averageInfo.innerHTML = `Obliczona srednia: ${average}`;
 }
