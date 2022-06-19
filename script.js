@@ -1,11 +1,3 @@
-const localStorageButton = document.querySelector('#localStorageButton');
-localStorageButton.addEventListener('click', () => {
-    console.log(localStorage);
-})
-const reset = document.querySelector('#reset');
-reset.addEventListener('click', () => {
-    localStorage.clear();
-})
 const grades = document.querySelector('#grades'); // grades selector
 const averageInfo = document.querySelector('#average'); // average info selector
 const allWeightInputs = document.querySelectorAll('.chooseWeightInput'); // all weight inputs selector
