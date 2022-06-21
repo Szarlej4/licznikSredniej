@@ -1,101 +1,140 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-* {
-    font-family: Lato;
+:root {
+    --primary-light: #8abdff;
+    --primary: #6d5dfc;
+    --primary-dark: #5b0eeb;
+
+    --white: #FFFFFF;
+    --greyLight-1: #E4EBF5;
+    --greyLight-2: #c8d0e7;
+    --greyLight-3: #bec8e4;
+    --greyDark: #9baacf;
 }
 
-.hidden {
-    display: none !important;
+/* $shadow: .3rem .3rem .6rem var(--greyLight-2), 
+-.2rem -.2rem .5rem var(--white); */
+/* $inner-shadow: inset .2rem .2rem .5rem var(--greyLight-2), 
+inset -.2rem -.2rem .5rem var(--white); */
+
+body {
+    height: 100vh;
+    overflow-y: auto;
+    background: var(--greyLight-1);
+    display: flex;
+    justify-content: center;
 }
 
 *,
 *::before,
 *::after {
     box-sizing: border-box;
-
+    font-family: Poppings, sans-serif;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+    background: var(--greyLight-1);
 }
 
-#grades {
-    display: flex;
-    flex-flow: row wrap;
-    max-width: 41rem;
-    justify-content: space-between;
-}
-
-.gradeInput,
-.weightInput {
-    width: 10rem;
-    height: 5rem;
-    margin: 0 2rem;
-}
-
-.grade h2 {
-    line-height: 2rem;
-    font-size: 1.4rem;
-}
-
-.grade,
-#weights {
-    background: green;
-    padding: 2rem;
-    max-width: 40rem;
-    margin: .5rem;
+#calculator {
+    max-width: 55rem;
     display: flex;
     flex-direction: column;
-    align-items: center;
-}
-
-.grade {
-    flex-basis: 19rem;
-    max-width: 19rem;
+    background: var(--greyLight-1);
+    box-shadow: .3rem .3rem .6rem var(--greyLight-2),
+        -.2rem -.2rem .5rem var(--white);
+    border-radius: 2rem;
+    overflow: auto;
+    flex: 1;
 }
 
 #weights {
+    max-width: 30rem;
+    align-self: center;
     flex-flow: row wrap;
     justify-content: center;
+    padding: 2rem;
+    box-shadow: .3rem .3rem .6rem var(--greyLight-2),
+        -.2rem -.2rem .5rem var(--white);
+    margin: 2rem;
+    border-radius: 1rem;
 }
 
 #weights h2 {
-    flex-basis: 100%;
+    flex: 1;
+    font-size: 2rem;
     text-align: center;
+    max-width: 30rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 1rem;
+
 }
 
 #weights input {
     margin-right: 1.5rem;
 }
 
-.specifyGradeBox {
+.inputs {
+    display: flex;
+    justify-content: space-between;
+    max-width: 30rem;
+}
+
+#grades {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+.grade {
+    min-width: 22rem;
+    max-width: 30rem;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    padding: 1rem;
+    margin: 1rem;
+    flex: 1;
+    border-radius: 1rem;
     display: flex;
     justify-content: center;
+    margin: 1rem;
+    border-radius: 1rem;
+    box-shadow: .3rem .3rem .6rem var(--greyLight-2),
+        -.2rem -.2rem .5rem var(--white);
+    max-width: 30rem;
+}
+
+.specifyGradeBox {
+    margin: 1rem;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    align-self: stretch;
+}
+
+.specifyGradeBox button {
+    padding: .4rem .7rem;
+    background: var(--greyLight-1);
+    border: 0px;
+    border-radius: .3em;
 }
 
 #averageContainer {
-    background: green;
-    max-width: 40rem;
-    padding: 2rem;
-    margin: .5rem;
     display: flex;
     justify-content: center;
+    margin: 1rem;
+    border-radius: 1rem;
+    box-shadow: .3rem .3rem .6rem var(--greyLight-2),
+        -.2rem -.2rem .5rem var(--white);
+    max-width: 30rem;
+    align-self: center;
 }
 
-.functionButton {
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size: 2rem;
-    color: white;
-    background-color: #048504;
-    border: solid 2px black;
-    ;
-    border-radius: .5rem;
-    padding: 1.5rem 2.25rem;
-}
-
-.functionButton:hover {
-    background: #0b9e0b;
-}
-
-.functionButton:active {
-    background: #15d315;
+#average {
+    padding: 2rem;
+    background: none;
 }
 
 .actualGradesInformation {
@@ -109,7 +148,6 @@
 
 .createdGrade:hover {
     border: 1px solid black;
-    ;
 }
 
 .createdGrade:hover .gradeTooltip {
@@ -159,4 +197,18 @@
 
 #gradesWeight10 {
     order: 10;
+}
+
+@media screen (max-width: 510px) {
+    #grades {
+        min-width: 10rem;
+    }
+
+    .grade {
+        min-width: 10rem;
+    }
+
+    #weights {
+        min-width: 10rem;
+    }
 }
