@@ -51,9 +51,9 @@ const createGradesInput = (i, bool) => {
                 console.log(`weightSum tworze oceny: ${weightSum}`);
                 console.log(`average tworze oceny: ${average}`);
 
-                createTooltip.innerHTML = "Wcisnij aby usunac ocene";
+                createTooltip.innerHTML = "Usuń";
                 createTooltip.classList.toggle('gradeTooltip');
-                createGradeItem.innerHTML = `${thisGradeValue} `;
+                createGradeItem.innerHTML = `${thisGradeValue}`;
                 createGradeItem.classList.toggle('createdGrade');
                 createActualGradesInformation.append(createGradeItem);
                 createGradeItem.append(createTooltip);
@@ -70,12 +70,12 @@ const createGradesInput = (i, bool) => {
                     localStorage.setItem('average', `${average}`);
                     console.log(`average klikam: ${average}`);
 
-                    averageInfo.innerHTML = `Obliczona srednia: ${average}`;
+                    averageInfo.innerHTML = `Obliczona średnia: ${average}`;
                     // let thisGradeLocalStorageId = `weight${i}grade${gradesOfThisWeight}`;
                     // localStorage.removeItem(thisGradeLocalStorageId, `${createGradesInput.value}`);
 
                     if (isNaN(average)) {
-                        averageInfo.innerHTML = 'Obliczona srednia: ???';
+                        averageInfo.innerHTML = 'Obliczona średnia: ???';
                         localStorage.setItem('average', '0');
                     }
 
@@ -99,7 +99,7 @@ const createGradesInput = (i, bool) => {
             const createGradeItem = document.createElement('span');
             const createTooltip = document.createElement('span');
 
-            createTooltip.innerHTML = "Wcisnij aby usunac ocene";
+            createTooltip.innerHTML = "Usuń";
             createTooltip.classList.toggle('gradeTooltip');
             createGradeItem.innerHTML = `${j} `;
             createGradeItem.classList.toggle('createdGrade');
@@ -122,7 +122,7 @@ const createGradesInput = (i, bool) => {
 
             average = Math.round((sum / weightSum) * 1000) / 1000;
             localStorage.setItem('average', `${average}`);
-            averageInfo.innerHTML = `Obliczona srednia: ${average}`;
+            averageInfo.innerHTML = `Obliczona średnia: ${average}`;
 
             let thisGradeLocalStorageId = `weight${i}grade${gradesOfThisWeight}`;
             localStorage.setItem(`${thisGradeLocalStorageId}`, `${createGradesInput.value}`);
@@ -141,12 +141,12 @@ const createGradesInput = (i, bool) => {
                 localStorage.setItem('average', `${average}`);
                 console.log(`average: ${average}`);
 
-                averageInfo.innerHTML = `Obliczona srednia: ${average}`;
+                averageInfo.innerHTML = `Obliczona średnia: ${average}`;
                 // let thisGradeLocalStorageId = `weight${i}grade${gradesOfThisWeight}`;
                 // localStorage.removeItem(thisGradeLocalStorageId, `${createGradesInput.value}`);
 
                 if (isNaN(average)) {
-                    averageInfo.innerHTML = 'Obliczona srednia: ???';
+                    averageInfo.innerHTML = 'Obliczona średnia: ???';
                     localStorage.setItem('average', '0');
                 }
 
@@ -189,10 +189,10 @@ const removeGradesInput = (gradesInput) => {
     boxInputToRemove.remove();
     average = Math.round((sum / weightSum) * 1000) / 1000;
     localStorage.setItem('average', `${average}`);
-    averageInfo.innerHTML = `Obliczona srednia: ${average}`;
+    averageInfo.innerHTML = `Obliczona średnia: ${average}`;
     if (isNaN(average)) {
         localStorage.setItem('weightSum', '0');
-        averageInfo.innerHTML = 'Obliczona srednia: ???';
+        averageInfo.innerHTML = 'Obliczona średnia: ???';
         localStorage.setItem('average', '0');
     }
 }
@@ -240,5 +240,5 @@ if (localStorage.getItem('siteVisitedEarlier') == null) {
             }
         })
     }
-    averageInfo.innerHTML = `Obliczona srednia: ${average}`;
+    averageInfo.innerHTML = `Obliczona średnia: ${average}`;
 }

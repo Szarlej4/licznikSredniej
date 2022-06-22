@@ -12,39 +12,37 @@
     --greyDark: #9baacf;
 }
 
-/* $shadow: .3rem .3rem .6rem var(--greyLight-2), 
--.2rem -.2rem .5rem var(--white); */
-/* $inner-shadow: inset .2rem .2rem .5rem var(--greyLight-2), 
-inset -.2rem -.2rem .5rem var(--white); */
-
 body {
     height: 100vh;
     overflow-y: auto;
     background: var(--greyLight-1);
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
 }
 
 *,
 *::before,
 *::after {
     box-sizing: border-box;
-    font-family: Poppings, sans-serif;
+    font-family: Poppins, sans-serif;
     font-weight: 400;
+    color: var(--greyDark);
     margin: 0;
     padding: 0;
     background: var(--greyLight-1);
 }
 
 #calculator {
-    max-width: 55rem;
+    width: 100%;
+    max-width: 60rem;
     display: flex;
     flex-direction: column;
     background: var(--greyLight-1);
     box-shadow: .3rem .3rem .6rem var(--greyLight-2),
         -.2rem -.2rem .5rem var(--white);
     border-radius: 2rem;
-    overflow: auto;
     flex: 1;
 }
 
@@ -77,14 +75,15 @@ body {
 
 .inputs {
     display: flex;
-    justify-content: space-between;
+    flex-flow: row wrap;
+    justify-content: flex-start;
     max-width: 30rem;
 }
 
 #grades {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: minmax(auto, auto);
 }
 
 .grade {
@@ -115,10 +114,21 @@ body {
 }
 
 .specifyGradeBox button {
-    padding: .4rem .7rem;
-    background: var(--greyLight-1);
+    padding: .4em .7em;
+    cursor: pointer;
+    background: var(--primary);
     border: 0px;
     border-radius: .3em;
+    box-shadow: inset 0.1em 0.1em .5em var(--primary-light),
+        inset -0.1em -0.1em .5em var(--primary-dark),
+        0.15em 0.15em 0.3em var(--greyLight-2),
+        -0.1em -0.1em 0.25em var(--white);
+    color: var(--greyLight-1);
+    transition: 0.3s ease;
+}
+
+.specifyGradeBox button:hover {
+    color: var(--white);
 }
 
 #averageContainer {
@@ -143,20 +153,38 @@ body {
 
 .createdGrade {
     font-size: 2rem;
+    width: 2rem;
+    display: inline-block;
+    text-align: center;
     position: relative;
+    margin-left: .4rem;
+    margin-right: .4rem;
+    padding: 0 .3rem;
+    cursor: pointer;
 }
 
 .createdGrade:hover {
-    border: 1px solid black;
+    background: var(--primary);
+    color: white;
 }
 
 .createdGrade:hover .gradeTooltip {
     visibility: visible;
+    transition: ease-in 0.3s;
 }
 
 .gradeTooltip {
     position: absolute;
+    top: 120%;
+    left: 50%;
+    transform: translateX(-50%);
     visibility: hidden;
+    font-size: .8em;
+    z-index: 1;
+    padding: .2rem 1rem;
+    border-radius: 2rem;
+    background: var(--primary);
+    color: white;
 }
 
 #gradesWeight1 {
@@ -199,16 +227,33 @@ body {
     order: 10;
 }
 
-@media screen (max-width: 510px) {
+@media screen and (max-width: 770px) {
     #grades {
-        min-width: 10rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
-    .grade {
-        min-width: 10rem;
-    }
-
+    .grade,
     #weights {
+        width: 80%;
         min-width: 10rem;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    :root {
+        font-size: 70%;
+    }
+
+    #weights h2 {
+        font-size: 2.5rem;
+        padding-left: 0;
+        padding-right: 0;
+        margin-bottom: 0;
+    }
+
+    #grades {
+        font-weight: 900;
     }
 }
