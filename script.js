@@ -1,6 +1,7 @@
 const grades = document.querySelector('#grades'); // grades selector
 const averageInfo = document.querySelector('#average'); // average info selector
 const allWeightInputs = document.querySelectorAll('.chooseWeightInput'); // all weight inputs selector
+const resetButton = document.querySelector('#resetButton'); // reset button
 if (localStorage.getItem('siteVisitedEarlier') == null) {
     localStorage.setItem('sum', '0');
     localStorage.setItem('average', '0');
@@ -12,6 +13,11 @@ let average = parseFloat(localStorage.getItem('average'));
 console.log(`average: ${average}`);
 let weightSum = parseFloat(localStorage.getItem(`weightSum`));
 console.log(`weightSum: ${weightSum}`);
+
+const resetSite = () => {
+    localStorage.clear();
+    location.reload();
+}
 
 const createGradesInput = (i, bool) => {
     if (!bool) {
@@ -242,3 +248,7 @@ if (localStorage.getItem('siteVisitedEarlier') == null) {
     }
     averageInfo.innerHTML = `Obliczona średnia: ${average}`;
 }
+
+resetButton.addEventListener('click', () => {
+    resetSite()
+});
