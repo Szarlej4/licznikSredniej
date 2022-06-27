@@ -234,16 +234,21 @@ body {
     margin-right: .4rem;
     padding: 0 .3rem;
     cursor: pointer;
+    transition: .2s ease-out;
 }
 
 .createdGrade:hover {
     background: var(--primary);
     color: white;
+    box-shadow: inset 0.05em 0.05em .25em var(--primary-light),
+        inset -0.05em -0.05em .25em var(--primary-dark),
+        0.07em 0.07em 0.15em var(--greyLight-2),
+        -0.05em -0.05em 0.25em var(--white);
+    border-radius: .1em;
 }
 
 .createdGrade:hover .gradeTooltip {
     visibility: visible;
-    transition: ease-in 0.3s;
 }
 
 .gradeTooltip {
@@ -252,11 +257,15 @@ body {
     left: 50%;
     transform: translateX(-50%);
     visibility: hidden;
-    font-size: .8em;
+    font-size: .6em;
     z-index: 1;
     padding: .2rem 1rem;
     border-radius: 2rem;
     background: var(--primary);
+    box-shadow: inset 0.1em 0.1em .5em var(--primary-light),
+        inset -0.1em -0.1em .5em var(--primary-dark),
+        0.15em 0.15em 0.3em var(--greyLight-2),
+        -0.1em -0.1em 0.25em var(--white);
     color: white;
 }
 
