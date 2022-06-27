@@ -77,8 +77,8 @@ body {
 .chooseWeightInput {
     appearance: none;
     position: relative;
-    width: 2rem;
-    height: 2rem;
+    width: 1.5rem;
+    height: 1.5rem;
     cursor: pointer;
     font-size: 1.5rem;
     background: var(--primary);
@@ -90,6 +90,7 @@ body {
         -0.1em -0.1em 0.25em var(--white);
     color: var(--greyLight-1);
     transition: opacity ease .3s;
+    justify-self: center;
 }
 
 .chooseWeightInput::before {
@@ -105,8 +106,8 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: .8rem;
-    height: .8rem;
+    width: .6rem;
+    height: .6rem;
     background: white;
     border-radius: .2rem;
     color: var(--greyLight-1);
@@ -117,8 +118,12 @@ body {
     grid-template-columns: 2rem 2rem;
     width: 4rem;
     font-size: 2rem;
-    justify-items: center;
     align-items: center;
+    justify-items: end;
+}
+
+.inputLabel:nth-of-type(10) {
+    grid-template-columns: 3rem 2rem;
 }
 
 #grades {
