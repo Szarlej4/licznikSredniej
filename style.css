@@ -108,9 +108,8 @@ body {
     transform: translate(-50%, -50%);
     width: .6rem;
     height: .6rem;
-    background: white;
+    background: var(--greyLight-1);
     border-radius: .2rem;
-    color: var(--greyLight-1);
 }
 
 .inputLabel {
@@ -160,7 +159,9 @@ body {
 }
 
 .specifyGradeBox button {
-    padding: .4em .7em;
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.6rem;
     cursor: pointer;
     background: var(--primary);
     border: 0px;
@@ -174,7 +175,13 @@ body {
 }
 
 .specifyGradeBox button:hover {
+    background: var(--primary-dark);
+    box-shadow: inset 0.1em 0.1em .5em var(--primary-light),
+        inset -0.1em -0.1em .5em var(--primary-dark),
+        0.15em 0.15em 0.3em var(--greyLight-2),
+        -0.1em -0.1em 0.25em var(--white);
     color: var(--white);
+    transition: 0.3s ease;
 }
 
 #averageContainer {
@@ -266,7 +273,7 @@ body {
         inset -0.1em -0.1em .5em var(--primary-dark),
         0.15em 0.15em 0.3em var(--greyLight-2),
         -0.1em -0.1em 0.25em var(--white);
-    color: white;
+    color: var(--white);
 }
 
 #gradesWeight1 {
