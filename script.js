@@ -35,6 +35,7 @@ const createGradesInput = (i, bool) => {
     createGrade.id = `gradesWeight${i}`;
 
     createGradesBoxTitle.innerHTML = `Dodaj oceny wagi ${i}`;
+    createGradesBoxTitle.classList.add('addGradesInformation');
 
     createSpecifyGradesBox.classList.add('specifyGradeBox');
 
