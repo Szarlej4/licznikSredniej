@@ -1,0 +1,2 @@
+# licznikSredniej
+Grades average calculator
